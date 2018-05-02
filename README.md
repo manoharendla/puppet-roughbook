@@ -31,7 +31,7 @@ Download and install the PDK kit using the link https://puppet.com/download-pupp
 
 
 ### PDK on CI 
-1. `pdk validate --formate junit`
+1. `pdk validate --format junit`
 
    
 
