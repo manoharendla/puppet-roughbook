@@ -27,6 +27,11 @@ Download and install the PDK kit using the link https://puppet.com/download-pupp
 2. Check your Gemfile compatibilty and make appropriate change. Compare the gemfile in your repository with the gen file genraetd as part of PDK
 3. Copy the .rubocopy.yml' file from the pdk-module-tenplate into your module root (https://github.com/puppetlabs/pdk-module-template)
 4. Run `pdk validate` so that pdk can resolve and install missing gem dependencies into its cache
+5. `pdk validate ruby -a`, it auto coorrects the ruby warnings.
+
+
+### PDK on CI 
+1. `pdk validate --formate junit`
 
    
 
