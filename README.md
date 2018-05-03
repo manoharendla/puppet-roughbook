@@ -33,7 +33,10 @@ Download and install the PDK kit using the link https://puppet.com/download-pupp
 ### PDK on CI 
 1. `pdk validate --format junit`
 
-   
+### Validate ERB templates
+`erb -x -T '-' template.erb`
+
+
 
 
 
