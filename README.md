@@ -37,6 +37,37 @@ Download and install the PDK kit using the link https://puppet.com/download-pupp
 `erb -x -T '-' template.erb`
 
 
+### Puppet class example
+
+*Define a class:*
+
+```ruby
+class mysql (
+    root_password => 'default_password',
+    port          => 3304
+) {
+    package { 'mysql-server':
+        ensure => present,
+    }
+    service { 'mysql':
+        ensure => running,
+        enable => true,
+    }
+}
+
+```
+
+*Declare/Instantiate a defined class:*
+*Two ways:*
+1. Using include keyword but without params `include mysql`
+2. Using class declaration with parameters, but can be instantiated only once, otherwise puppet will through a duplicate resource error
+```ruby
+class { 'mysql':
+    root_password => 'temp_password',
+    port          => '3306',
+    }
+
+```
 
 
 
