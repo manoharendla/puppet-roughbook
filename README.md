@@ -43,8 +43,8 @@ Download and install the PDK kit using the link https://puppet.com/download-pupp
 
 ```ruby
 class mysql (
-    root_password => 'default_password',
-    port          => 3304
+    $root_password => 'default_password',
+    $port          => 3304
 ) {
     package { 'mysql-server':
         ensure => present,
@@ -69,7 +69,34 @@ class { 'mysql':
 
 ```
 
+*Defined resource types or defined types:*
+Similar to parameterized classes defined but used multiple times(with different titles)
 
+*Defining defined types*
+```ruby
+define example(
+    $key1 => value1,
+    $key2 => value2,
+){
+  package { 'somepackage':
+      ensure => present,
+ }
+ file { 'var_$name':
+      path => '/var/lib/jenkins',
+      ensure => 'present',      
+ }
+ }
+```
 
+*Instantiating a defined type*
 
+```ruby
+example { 'File1':
+    key1 => value2,
+}
 
+example { 'File2':
+    key1 => value3,
+}
+
+```
