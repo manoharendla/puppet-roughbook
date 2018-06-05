@@ -135,5 +135,20 @@ By default hiera.yaml file is located at /etc/puppet/ but we can use a custom pa
 4. When a Redhat puppet agent sends facts to the master server, it would get the lookup operation will get the details from Redhat.yaml file.
 
 
+We can also declare the class level variables 
+*cat common.yaml* (usally define the dfault value)
+
+classname::keyname: 'value'
+
+ex: 
+ntp::ntp_regional_server: (array of strings)
+  - 'uk.pool.ntp.org'
+  - 'us.pool.ntp.org'
+ntp::monitor: true (boolean)
+
+ntp::ntp_local_server: '192.168.0.2' (string)
+
+
+
 
 
