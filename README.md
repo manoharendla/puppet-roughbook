@@ -100,3 +100,40 @@ example { 'File2':
 }
 
 ```
+
+### Hiera example:
+*Why hiera is used ?*
+Hiera is a key value lookup tool that will help in separating the data from code.
+
+*Hiera installation directory and configuration file*
+By default hiera.yaml file is located at /etc/puppet/ but we can use a custom path by using a parameter named hiera_config  parameter inside puppet.conf file. 
+
+*How does hiera.yaml look like:*
+```yaml
+:hierarchy:
+    -"%{::osfamily}"
+    - common
+:backends:
+    - yaml
+:yaml:
+    :datadir: '/etc/puppet/hieradata/'
+```
+
+*hierarchy* acts as an datasource for hiera lookup. It can refer static or dynamic datasource (file with yaml extension in datadir). Dynamic data source can be defined using %{::osfamily}
+*backends*  Search through all yaml files
+*datadir* Where the yaml configuration files are located
+
+*The steps to follow:*
+1. Create yaml files for node specific 
+   ex: Redhat.yaml, Debian.yaml
+2. Define the key value pair in Redhat.yaml file and Debian.yaml file
+   ex: cat Redhat.yaml
+     sshservicename=sshd
+    ex : cat Debian.yaml
+       sshservicename=ssh
+3. Now from the puppet manifest, the values can be read using  $servicename= hiera('sshservicename')
+4. When a Redhat puppet agent sends facts to the master server, it would get the lookup operation will get the details from Redhat.yaml file.
+
+
+
+
