@@ -193,6 +193,21 @@ $my_hash = {
 ### Comments
 Comments should always use the hash(#) key.
 
+### Resource names or titles
+All resource names should be quoted
 
+```ruby
 
+package { 'openssh':
+  ensure => present,
+  before => Service['openssh'],
+}
+```
+### Notify:
 
+```ruby
+notify { 'warning': message => 'This is a warning message' } 
+```
+
+### Notes for future:
+using template() and epp() function to read the tempaltes
