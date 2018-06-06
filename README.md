@@ -209,5 +209,45 @@ package { 'openssh':
 notify { 'warning': message => 'This is a warning message' } 
 ```
 
+### Attribute order
+
+Ensure attribute should be defined first, so that the user can quickly identify if the resource if being created or deleted.
+Splat(* ) attribute should be defined last.
+
+```ruby
+${file_ownership} = {
+  'owner' => 'root',
+  'group' => 'wheel',
+  'mode'  => '0644',
+ }
+ 
+ file { '/etc/password':
+   ensure => present,
+   *      => ${file_ownership},
+ }
+ ```
+### Resource Arrangement
+*With in a group resources should be grouped by logical relationship with each other rather than with resource type*
+
+```ruby
+file { '/var/lib/':
+  ensure => directory,
+}
+
+file { '/var/lib/log.txt':
+  ensure => file,
+}
+
+file { '/var/softwares':
+  ensure => directory,
+}
+
+file { '/var/softwares/vm.txt':
+   ensure => file,
+}
+```
+
+
+
 ### Notes for future:
 using template() and epp() function to read the tempaltes
