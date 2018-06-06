@@ -247,6 +247,46 @@ file { '/var/softwares/vm.txt':
 }
 ```
 
+### Creating multiple directories using an array:
+
+```ruby
+class app {
+  $dir = ['/var/lib/logs','/var/lib/mysql','/var/lib/psql']
+  
+  file { ${dir}:
+    ensure => directory,
+    mode   => 0644,
+  }
+}
+
+
+```
+
+### Use of default keyword for setting default attributes:
+
+```ruby
+class defaultexample {
+  file {
+    default:
+      ensure => file,
+      owner  => 'root',
+      group  => 'wheel',
+      mode   => '0644',
+    ;
+    '/var/lib/mysql/mysql.txt':
+    ;
+    '/var/log/tmp.txt':
+    ;
+    '/var/log/ab.txt':
+      mode => '0666',
+    ;
+    '/var/tmp/tmp2.txt':
+      owner => 'user1',
+    ; 
+  }
+}
+
+```
 
 
 ### Notes for future:
