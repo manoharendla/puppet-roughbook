@@ -149,6 +149,50 @@ ntp::monitor: true (boolean)
 ntp::ntp_local_server: '192.168.0.2' (string)
 
 
+### Puppet best practices for Writing Manifests
+ ex: 
+```ruby
+  file { '/etc/sshd/ssh.conf':
+    ensure => present,
+  }
+``` 
+1. Must use two space soft tabs :   *line no.2 in the below manifest is provided with two spaces* 
+2. No space between title and colon 
+3. No trailing white spaces
+4. End with a new line
+
+### Best practices for hashes and arrays.
+ex:
+```ruby
+service { 'foo':
+  require => [
+    File['foo1'],
+    File['foo2'],
+  ],
+}
+
+$my_hash = { 
+  key1 => 'value1',
+  key2 => 'value2',
+}
+
+```
+
+1. Each element on new line.
+
+### Quoting 
+
+*Good*
+```ruby
+"/etc/${facts['operatingsystem']}"
+"/etc/${file}.conf"
+```
+
+1. Donot use single quote if a string contains a variable
+
+### Comments
+Comments should always use the hash(#) key.
+
 
 
 
