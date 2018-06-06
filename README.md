@@ -350,6 +350,28 @@ class filemode {
 
 ```
 
+### Case example:
+
+```ruby
+class switchcase {
+  case ${facts['operatingsystem']} {
+    'Debian': {
+       $version = '1.2.3'
+     }
+     'Solaris': {
+       $version =  '3.2.1'
+     }
+     default: {
+       fail("Module ${module_name} is not supported on ${facts['operatingsystem']}")
+     }
+    
+  
+  }
+
+}
+
+
+```
 
 
 ### Notes for future:
