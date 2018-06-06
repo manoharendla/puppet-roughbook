@@ -288,6 +288,51 @@ class defaultexample {
 
 ```
 
+### Write a puppet manifest that will create some files with default attribute types.
+
+```ruby
+class exampledefault{
+  $default_attributes = {
+    'ensure' => 'file',
+    'owner'  => 'root',
+    'group'  => 'wheel'
+    'mode'   => '0644',
+  }
+  $files = [ 'file1', 'file2', 'file3', 'file4' ]
+  file {
+    default:
+      * => $default_attributes,
+    ;
+    $files:
+    ; 
+  }
+}
+```
+
+*Using for each*
+```ruby
+class exampledefault{
+  $default_attributes = {
+    'ensure' => 'file',
+    'owner'  => 'root',
+    'group'  => 'wheel'
+    'mode'   => '0644',
+  }
+  $files = [ 'file1', 'file2', 'file3', 'file4' ]
+  file {
+    default:
+      * => $default_attributes,
+    ;
+    
+    $files.each |path|:
+    ;
+    
+  }
+
+
+} 
+
+```
 
 ### Notes for future:
 using template() and epp() function to read the tempaltes
