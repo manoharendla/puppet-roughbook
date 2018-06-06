@@ -328,11 +328,29 @@ class exampledefault{
     ;
     
   }
-
-
 } 
 
 ```
+### Conditionals:
+
+```ruby
+class filemode {
+  $file_mode = ${facts['operatingsystem']} ? {
+    'debian' => '0644',
+    'redhat' => '0666',
+    'suse'   => '0777',
+    default  => '0666',
+  }
+  
+  file { '/var/lin/mysql.txt':
+    ensure => present,
+    mode   => $file_mode,
+  }
+}
+
+```
+
+
 
 ### Notes for future:
 using template() and epp() function to read the tempaltes
