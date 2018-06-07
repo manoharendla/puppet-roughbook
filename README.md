@@ -372,6 +372,8 @@ class switchcase {
 
 
 ```
+### How to install Mysql server and client along with databas, users creation:
+https://github.com/manoharendla/puppet-mysql-learning
 
 
 ### Notes for future:
